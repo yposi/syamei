@@ -1,8 +1,7 @@
 # Syamei
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/syamei`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+syameiは、法人格の存在チェック、削除に使用するライブラリです。
+会社名の名寄せなどで利用されることを目的としています。
 
 ## Installation
 
@@ -20,24 +19,39 @@ Or install it yourself as:
 
     $ gem install syamei
 
-## Usage
+## 使い方
 
-TODO: Write usage instructions here
+社名のみを返す（法人格を削除）
+```
+Syamei.only('株式会社xxx') => "xxx"
+```
 
-## Development
+末尾の法人格を削除
+```
+Syamei.with_beginning('株式会社xxx') => "株式会社xxx"
+Syamei.with_beginning('xxx株式会社') => "xxx"
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+先頭の法人格を削除
+```
+Syamei.with_end('株式会社xxx') => "xxx"
+Syamei.with_end('xxx株式会社') => "xxx株式会社"
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+使用している法人格を取得
+```
+Syamei.notation("株式会社xxx") => "株式会社"
+```
+
+現在登録している法人格
+```
+Syamei.list
+=> "株式会社  有限会社  合名会社  合資会社  合同会社  医療法人社団  医療法人財団  医療法人  社会医療法人  財団法人  一般財団法人  公益財団法人  社団法人  一般社団法人  公益社団法人  宗教法人  学校法人  社会福祉法人  更生保護法人  相互会社  特定非営利活動法人  独立行政法人  地方独立行政法人  弁護士法人  有限責任中間法人  無限責任中間法人  行政書士法人  司法書士法人  税理士法人  国立大学法人  公立大学法人  農事組合法人  管理組合法人  社会保険労務士法人  営業所  出張所  ㈱  (株)  ㈲  (有)  (名)  (資)  (同)  (医)  (財)  (一財)  (公財)  (社)  (一社)  (公社)  (宗)  (学)  (福)  (相)  (特非)  (独)  (地独)  (弁)  (行)  (司)  (税)  (中)  (大)  (営)  (出)  カ)  (カ)  (カ  ユ)  (ユ)  (ユ  メ)  (メ)  (メ  シ)  (シ)  (シ  ド)  (ド)  (ド  シユウ)  ガク)  フク)  ホゴ)  (ホゴ)  (ホゴ  ソ)  (ソ)  (ソ  トクヒ)  (トクヒ)  (トクヒ  ドク)  (ドク)  (ドク  チドク)  (チドク)  (チドク  ベン)  (ベン)  (ベン  ギヨ)  (ギヨ)  (ギヨ  シホウ)  (シホウ)  (シホウ  ゼイ)  (ゼイ)  (ゼイ  ノウ)  (ノウ)  (ノウ  カンリ)  (カンリ)  (カンリ  ロウム)  (ロウム)  (ロウム  (ダイ)  (ダイ  エイ)  (エイ)  (エイ  シユツ)  (シユツ)  (シユツ"
+```
 
 ## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/syamei. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Syamei project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/syamei/blob/master/CODE_OF_CONDUCT.md).
+1. Fork it.
+1. Create your feature branch (git checkout -b my-new-feature)
+1. Commit your changes (git commit -am 'Add some feature')
+1. Push to the branch (git push origin my-new-feature)
+1. Create new Pull Request
