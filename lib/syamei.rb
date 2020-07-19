@@ -4,21 +4,34 @@ require 'yaml'
 module Syamei
   class Error < StandardError; end
 
-  NOTATION = YAML.load_file(File.expand_path(File.join('..', 'data', 'notations.yml'), __FILE__))['notations']['full'].join('|')
-  ABBREVIATION = YAML.load_file(File.expand_path(File.join('..', 'data', 'notations.yml'), __FILE__))['notations']['abbreviation'].join('|')
-  KANA = YAML.load_file(File.expand_path(File.join('..', 'data', 'notations.yml'), __FILE__))['notations']['kana'].join('|')
+  DATA = YAML.load_file(File.expand_path(File.join('..', 'data', 'notations.yml'), __FILE__))['notations']
+  NOTATION = DATA.map { |n| n[0] }.compact.reject(&:empty?).flatten.uniq
+  SPECIAL = DATA.map { |n| n[1] }.compact.reject(&:empty?).flatten.uniq
+  ABBREVIATION = DATA.map { |n| n[2] }.compact.reject(&:empty?).flatten.uniq
+  KANA_HEAD = DATA.map { |n| n[3] }.compact.reject(&:empty?).flatten.uniq
+  KANA_MIDDLE = DATA.map { |n| n[4] }.compact.reject(&:empty?).flatten.uniq
+  KANA_TAIL = DATA.map { |n| n[5] }.compact.reject(&:empty?).flatten.uniq
 
   COMPLEX_TYPE = {
-    0 => [NOTATION, ABBREVIATION, KANA].join('|'),
-    1 => NOTATION,
-    2 => ABBREVIATION,
-    3 => KANA
+    0 => {
+        all: [NOTATION, SPECIAL, ABBREVIATION, KANA_HEAD, KANA_TAIL].join('|'),
+        head: [NOTATION, SPECIAL, ABBREVIATION, KANA_HEAD].join('|'),
+        tail: [NOTATION, SPECIAL, ABBREVIATION, KANA_TAIL].join('|')
+    },
+    1 => NOTATION.join('|'),
+    2 => SPECIAL.join('|'),
+    3 => {
+      all: KANA_TAIL.join('|'),
+      head: KANA_HEAD.join('|'),
+      tail: KANA_TAIL.join('|')
+    }
   }.freeze
 
   # 前株の存在チェック
   def self.with_beginning?(name, type = 0)
     return false if name.nil? || name.empty?
 
+    return name.match?(/^(#{COMPLEX_TYPE[type][:head]}).*$/) if type.zero? || type == 3
     name.match?(/^(#{COMPLEX_TYPE[type]}).*$/)
   end
 
@@ -26,6 +39,7 @@ module Syamei
   def self.with_end?(name, type = 0)
     return false if name.nil? || name.empty?
 
+    return name.match?(/.*(#{COMPLEX_TYPE[type][:tail]})$/) if type.zero? || type == 3
     name.match?(/.*(#{COMPLEX_TYPE[type]})$/)
   end
 
@@ -40,6 +54,7 @@ module Syamei
   def self.with_beginning(name, type = 0)
     return nil if name.nil? || name.empty?
 
+    return name.gsub(/(#{COMPLEX_TYPE[type][:tail]})$/, '').strip if type.zero? || type == 3
     name.gsub(/(#{COMPLEX_TYPE[type]})$/, '').strip
   end
 
@@ -47,6 +62,7 @@ module Syamei
   def self.with_end(name, type = 0)
     return nil if name.nil? || name.empty?
 
+    return name.gsub(/^(#{COMPLEX_TYPE[type][:head]})/, '').strip if type.zero? || type == 3
     name.gsub(/^(#{COMPLEX_TYPE[type]})/, '').strip
   end
 
@@ -59,25 +75,14 @@ module Syamei
     name
   end
 
-  # 前株と後株の置換
-  # def self.replace_begin_to_end(name, type=0)
-  #  # notation
-  #  # 前株消す
-  #  # 後株に付与
-  # end
-
-  # 後株と前株の置換
-  # def self.replace_end_to_begin(name, type=0)
-  #  # notation
-  #  # 後株消す
-  #  # 前株に付与
-  # end
-
   def self.notation(name, type = 0)
+    return nil if name.nil? || name.empty?
+
+    return name[/(#{COMPLEX_TYPE[type][:all]})/, 1] if type.zero? || type == 3
     name[/(#{COMPLEX_TYPE[type]})/, 1]
   end
 
   def self.list
-    COMPLEX_TYPE[0].gsub('|', '  ').gsub('\\', '')
+    COMPLEX_TYPE[0][:all].gsub('|', '  ').gsub('\\', '')
   end
 end
