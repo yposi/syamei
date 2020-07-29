@@ -14,9 +14,9 @@ module Syamei
 
   COMPLEX_TYPE = {
     0 => {
-        all: [NOTATION, SPECIAL, ABBREVIATION, KANA_HEAD, KANA_TAIL].join('|'),
-        head: [NOTATION, SPECIAL, ABBREVIATION, KANA_HEAD].join('|'),
-        tail: [NOTATION, SPECIAL, ABBREVIATION, KANA_TAIL].join('|')
+      all: [NOTATION, SPECIAL, ABBREVIATION, KANA_HEAD, KANA_TAIL].join('|'),
+      head: [NOTATION, SPECIAL, ABBREVIATION, KANA_HEAD].join('|'),
+      tail: [NOTATION, SPECIAL, ABBREVIATION, KANA_TAIL].join('|')
     },
     1 => NOTATION.join('|'),
     2 => SPECIAL.join('|'),
@@ -32,6 +32,7 @@ module Syamei
     return false if name.nil? || name.empty?
 
     return name.match?(/^(#{COMPLEX_TYPE[type][:head]}).*$/) if type.zero? || type == 3
+
     name.match?(/^(#{COMPLEX_TYPE[type]}).*$/)
   end
 
@@ -40,6 +41,7 @@ module Syamei
     return false if name.nil? || name.empty?
 
     return name.match?(/.*(#{COMPLEX_TYPE[type][:tail]})$/) if type.zero? || type == 3
+
     name.match?(/.*(#{COMPLEX_TYPE[type]})$/)
   end
 
@@ -55,6 +57,7 @@ module Syamei
     return nil if name.nil? || name.empty?
 
     return name.gsub(/(#{COMPLEX_TYPE[type][:tail]})$/, '').strip if type.zero? || type == 3
+
     name.gsub(/(#{COMPLEX_TYPE[type]})$/, '').strip
   end
 
@@ -63,6 +66,7 @@ module Syamei
     return nil if name.nil? || name.empty?
 
     return name.gsub(/^(#{COMPLEX_TYPE[type][:head]})/, '').strip if type.zero? || type == 3
+
     name.gsub(/^(#{COMPLEX_TYPE[type]})/, '').strip
   end
 
@@ -79,6 +83,7 @@ module Syamei
     return nil if name.nil? || name.empty?
 
     return name[/(#{COMPLEX_TYPE[type][:all]})/, 1] if type.zero? || type == 3
+
     name[/(#{COMPLEX_TYPE[type]})/, 1]
   end
 

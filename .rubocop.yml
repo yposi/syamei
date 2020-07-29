@@ -1,0 +1,28 @@
+AllCops:
+  Exclude:
+    - "tmp/**/*"
+    - "config/initializers/*"
+    - "vendor/**/*"
+    - "bin/*"
+  DisplayCopNames: true
+  TargetRubyVersion: 2.6.6
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'syamei.gemspec'
+    - 'spec/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
