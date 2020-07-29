@@ -88,15 +88,6 @@ jobs:
           paths:
             - vendor/bundle
 
-      - run:
-          name: deploy
-          command: |
-            curl -u yposi:$RUBYGEMS_PASSWORD https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials
-            git config user.name yposi
-            git config user.email $RUBYGEMS_EMAIL
-            bundle exec rake build
-            bundle exec rake release
-
 workflows:
   version: 2
   build-and-deploy:
