@@ -1,4 +1,6 @@
 # Syamei
+[![Gem Version](https://badge.fury.io/rb/syamei.svg)](https://badge.fury.io/rb/syamei)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 syameiは、法人格の存在チェック、削除に使用するライブラリです。
 会社名の名寄せなどで利用されることを目的としています。
