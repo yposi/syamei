@@ -25,7 +25,40 @@ Or install it yourself as:
 
 社名のみを返す（法人格を削除）
 ```
-Syamei.only('株式会社xxx') => "xxx"
+Syamei.only('株式会社xxx')    => "xxx"　　　　 # 引数1つはすべて
+Syamei.only('株式会社xxx', 0) => "xxx"　　　　 # type=0はすべて
+Syamei.only('株式会社xxx', 1) => "xxx"　　　　 # type=1は法人格フル
+Syamei.only('株式会社xxx', 2) => "株式会社xxx" # type=2は特殊文字
+Syamei.only('株式会社xxx', 3) => "株式会社xxx" # type=3は省略文字
+Syamei.only('株式会社xxx', 4) => "株式会社xxx" # type=4はカナ
+
+Syamei.only('㈱xxx')    => "xxx"　 # 引数1つはすべて
+Syamei.only('㈱xxx', 0) => "xxx"　 # type=0はすべて
+Syamei.only('㈱xxx', 1) => "㈱xxx" # type=1は法人格フル
+Syamei.only('㈱xxx', 2) => "xxx"　 # type=2は特殊文字
+Syamei.only('㈱xxx', 3) => "㈱xxx" # type=3は省略文字
+Syamei.only('㈱xxx', 4) => "㈱xxx" # type=4はカナ
+
+Syamei.only('(株)xxx')    => "xxx"　   # 引数1つはすべて
+Syamei.only('(株)xxx', 0) => "xxx"　   # type=0はすべて
+Syamei.only('(株)xxx', 1) => "(株)xxx" # type=1は法人格フル
+Syamei.only('(株)xxx', 2) => "(株)xxx" # type=2は特殊文字
+Syamei.only('(株)xxx', 3) => "xxx"　   # type=3は省略文字
+Syamei.only('(株)xxx', 4) => "(株)xxx" # type=4はカナ
+
+Syamei.only('カ)xxx')    => "xxx"　  # 引数1つはすべて
+Syamei.only('カ)xxx', 0) => "xxx"　  # type=0はすべて
+Syamei.only('カ)xxx', 1) => "カ)xxx" # type=1は法人格フル
+Syamei.only('カ)xxx', 2) => "カ)xxx" # type=2は特殊文字
+Syamei.only('カ)xxx', 3) => "カ)xxx" # type=3は省略文字
+Syamei.only('カ)xxx', 4) => "xxx"　  # type=4はカナ
+
+Syamei.only('xxx(カ')    => "xxx"　  # 引数1つはすべて
+Syamei.only('xxx(カ', 0) => "xxx"　  # type=0はすべて
+Syamei.only('xxx(カ', 1) => "xxx(カ" # type=1は法人格フル
+Syamei.only('xxx(カ', 2) => "xxx(カ" # type=2は特殊文字
+Syamei.only('xxx(カ', 3) => "xxx(カ" # type=3は省略文字
+Syamei.only('xxx(カ', 4) => "xxx"　  # type=4はカナ
 ```
 
 末尾の法人格を削除
