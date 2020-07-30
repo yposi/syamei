@@ -20,8 +20,9 @@ module Syamei
     },
     1 => NOTATION.join('|'),
     2 => SPECIAL.join('|'),
-    3 => {
-      all: KANA_TAIL.join('|'),
+    3 => ABBREVIATION.join('|'),
+    4 => {
+      all: [KANA_HEAD, KANA_TAIL].join('|'),
       head: KANA_HEAD.join('|'),
       tail: KANA_TAIL.join('|')
     }
@@ -31,7 +32,7 @@ module Syamei
   def self.with_beginning?(name, type = 0)
     return false if name.nil? || name.empty?
 
-    return name.match?(/^(#{COMPLEX_TYPE[type][:head]}).*$/) if type.zero? || type == 3
+    return name.match?(/^(#{COMPLEX_TYPE[type][:head]}).*$/) if type.zero? || type == 4
 
     name.match?(/^(#{COMPLEX_TYPE[type]}).*$/)
   end
@@ -40,7 +41,7 @@ module Syamei
   def self.with_end?(name, type = 0)
     return false if name.nil? || name.empty?
 
-    return name.match?(/.*(#{COMPLEX_TYPE[type][:tail]})$/) if type.zero? || type == 3
+    return name.match?(/.*(#{COMPLEX_TYPE[type][:tail]})$/) if type.zero? || type == 4
 
     name.match?(/.*(#{COMPLEX_TYPE[type]})$/)
   end
@@ -56,7 +57,7 @@ module Syamei
   def self.with_beginning(name, type = 0)
     return nil if name.nil? || name.empty?
 
-    return name.gsub(/(#{COMPLEX_TYPE[type][:tail]})$/, '').strip if type.zero? || type == 3
+    return name.gsub(/(#{COMPLEX_TYPE[type][:tail]})$/, '').strip if type.zero? || type == 4
 
     name.gsub(/(#{COMPLEX_TYPE[type]})$/, '').strip
   end
@@ -65,7 +66,7 @@ module Syamei
   def self.with_end(name, type = 0)
     return nil if name.nil? || name.empty?
 
-    return name.gsub(/^(#{COMPLEX_TYPE[type][:head]})/, '').strip if type.zero? || type == 3
+    return name.gsub(/^(#{COMPLEX_TYPE[type][:head]})/, '').strip if type.zero? || type == 4
 
     name.gsub(/^(#{COMPLEX_TYPE[type]})/, '').strip
   end
@@ -82,7 +83,7 @@ module Syamei
   def self.notation(name, type = 0)
     return nil if name.nil? || name.empty?
 
-    return name[/(#{COMPLEX_TYPE[type][:all]})/, 1] if type.zero? || type == 3
+    return name[/(#{COMPLEX_TYPE[type][:all]})/, 1] if type.zero? || type == 4
 
     name[/(#{COMPLEX_TYPE[type]})/, 1]
   end
