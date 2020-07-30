@@ -76,8 +76,7 @@ module Syamei
     return nil if name.nil? || name.empty?
 
     name = with_beginning(name, type)
-    name = with_end(name, type)
-    name
+    with_end(name, type)
   end
 
   def self.notation(name, type = 0)
