@@ -60,7 +60,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.17)
   rake (>= 12.3.3)
-  rspec (~> 3.0)
+  rspec
   rspec_junit_formatter
   rubocop
   rubocop-rspec
