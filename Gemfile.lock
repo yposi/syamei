@@ -60,7 +60,7 @@ DEPENDENCIES
   rake (>= 12.3.3)
   rspec (~> 3.0)
   rspec_junit_formatter
-  rubocop (~> 0.62)
+  rubocop
   rubocop-rspec
   simplecov
   syamei!
