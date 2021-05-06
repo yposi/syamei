@@ -3,7 +3,7 @@ jobs:
   build:
     parallelism: 3
     docker:
-      - image: circleci/ruby:2.6.6
+      - image: circleci/ruby:2.6.7
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -59,7 +59,7 @@ jobs:
           destination: coverage-results
   deploy:
     docker:
-      - image: circleci/ruby:2.6.6
+      - image: circleci/ruby:2.6.7
 
     steps:
       - checkout
