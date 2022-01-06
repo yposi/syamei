@@ -1,9 +1,14 @@
-## 0.2.1 (2021-12-29)
+## 0.2.2 (2022-01-06)
+
+* Bump rspec_junit_formatter from 0.4.1 to 0.5.0 ([b8958ba](https://github.com/yposi/syamei/commit/b8958ba))
+* Create codeql-analysis.yml ([7c2e54b](https://github.com/yposi/syamei/commit/7c2e54b))
+
+## <small>0.2.1 (2021-12-29)</small>
 
 * Bump rake from 13.0.3 to 13.0.6 ([0d072e0](https://github.com/yposi/syamei/commit/0d072e0))
 * circleci image's version up ([eb94d5c](https://github.com/yposi/syamei/commit/eb94d5c))
 
-## 0.2.0 (2021-05-06)
+## <small>0.2.0 (2021-05-06)</small>
 
 * ruby version up 2.6 to 2.7 ([de3ae55](https://github.com/yposi/syamei/commit/de3ae55))
 * version up 0.2.0 ([dcedaea](https://github.com/yposi/syamei/commit/dcedaea))
