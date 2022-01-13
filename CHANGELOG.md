@@ -1,4 +1,8 @@
-## 0.2.2 (2022-01-06)
+## 0.2.3 (2022-01-13)
+
+* Bump rspec_junit_formatter from 0.5.0 to 0.5.1 ([07febf6](https://github.com/yposi/syamei/commit/07febf6))
+
+## <small>0.2.2 (2022-01-06)</small>
 
 * Bump rspec_junit_formatter from 0.4.1 to 0.5.0 ([b8958ba](https://github.com/yposi/syamei/commit/b8958ba))
 * Create codeql-analysis.yml ([7c2e54b](https://github.com/yposi/syamei/commit/7c2e54b))
