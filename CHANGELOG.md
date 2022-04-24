@@ -1,4 +1,8 @@
-## 0.2.3 (2022-01-13)
+## 0.2.4 (2022-04-24)
+
+* Bump rspec from 3.10.0 to 3.11.0 ([57f3ac6](https://github.com/yposi/syamei/commit/57f3ac6))
+
+## <small>0.2.3 (2022-01-13)</small>
 
 * Bump rspec_junit_formatter from 0.5.0 to 0.5.1 ([07febf6](https://github.com/yposi/syamei/commit/07febf6))
 
@@ -38,8 +42,8 @@
 
 ## <small>0.1.3 (2020-07-30)</small>
 
-* add methods ([c2ed443](https://github.com/yposi/syamei/commit/c2ed443))
 * add methods ([a235ea5](https://github.com/yposi/syamei/commit/a235ea5))
+* add methods ([c2ed443](https://github.com/yposi/syamei/commit/c2ed443))
 * circleci導入 ([f751c3c](https://github.com/yposi/syamei/commit/f751c3c))
 * fix gemspec ([03d1abd](https://github.com/yposi/syamei/commit/03d1abd))
 * fix README ([bc8a0fe](https://github.com/yposi/syamei/commit/bc8a0fe))
